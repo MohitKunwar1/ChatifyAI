@@ -26,9 +26,9 @@ app.use(express.json());
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO_DB);
-    console.log(`Connected to mongodb!`);
+    (`Connected to mongodb!`);
   } catch (error) {
-    console.log(error);
+    (error);
   }
 };
 
@@ -83,7 +83,7 @@ app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
     }
     res.status(201).send(newChat._id);
   } catch (error) {
-    console.log(error.message);
+    (error.message);
     res.status(500).send("Error creating chat!");
   }
 });
@@ -94,7 +94,7 @@ app.get("/api/userchats", ClerkExpressRequireAuth(), async (req, res) => {
     const userChats = await UserChats.find({ userId: userId });
     res.status(200).send(userChats[0].chats);
   } catch (error) {
-    console.log(error);
+    (error);
     res.status(500).send("Error fetching user chats!");
   }
 });
@@ -106,7 +106,7 @@ app.get("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
     const chat = await Chat.findOne({ _id: req.params.id, userId });
     res.status(200).send(chat);
   } catch (error) {
-    console.log(error);
+    (error);
     res.status(500).send("Error fetching chat!");
   }
 });
@@ -135,7 +135,7 @@ app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
     );
     res.status(201).send(updatedChat);
   } catch (error) {
-    console.log(error);
+    (error);
     res.status(500).send("Error adding conversation!");
   }
 });
@@ -152,7 +152,7 @@ app.delete("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
     );
     res.send(`Chat with ID ${chatId} deleted successfully!`);
   } catch (error) {
-    console.log("Error deleting chat:", error);
+    ("Error deleting chat:", error);
     res.status(401).send("Unauthenticated!");
   }
 });
@@ -165,5 +165,5 @@ app.get("*", (req, res) => {
 
 app.listen(port, () => {
   connect();
-  console.log(`Server running on port ${port}`);
+  (`Server running on port ${port}`);
 });

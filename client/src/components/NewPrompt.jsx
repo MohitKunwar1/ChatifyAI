@@ -69,7 +69,7 @@ const NewPrompt = ({ data }) => {
         });
     },
     onError: (error) => {
-      console.log(error);
+      (error);
     },
   });
 
@@ -90,7 +90,7 @@ const NewPrompt = ({ data }) => {
 
       mutation.mutate();
     } catch (error) {
-      console.log(error);
+      (error);
       res.status(500).send("Error at new prompt!");
     }
   };

@@ -19,7 +19,7 @@ const authenticator = async () => {
     const { signature, expire, token } = data;
     return { signature, expire, token };
   } catch (error) {
-    console.error("Authentication request failed: ", error);
+    ("Authentication request failed: ", error);
     throw new Error(`Authentication request failed: ${error.message}`);
   }
 };
@@ -28,16 +28,16 @@ const Upload = ({ setImage }) => {
   const ikUploadRef = useRef(null);
 
   const onError = (err) => {
-    console.error("Error", err);
+    ("Error", err);
   };
 
   const onSuccess = (res) => {
-    console.log("Success", res);
+    ("Success", res);
     setImage((prev) => ({ ...prev, isLoading: false, dbData: res }));
   };
 
   const onUploadProgress = (progress) => {
-    console.log("Progress", progress);
+    ("Progress", progress);
   };
 
   const onUploadStart = (e) => {

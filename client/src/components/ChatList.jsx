@@ -34,7 +34,7 @@ const ChatList = () => {
       setShowDeletePopUp(false);
     },
     onError: (error) => {
-      console.log(error);
+      (error);
     },
   });
 
