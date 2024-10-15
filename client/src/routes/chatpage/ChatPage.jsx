@@ -7,7 +7,6 @@ import { IKImage } from "imagekitio-react";
 
 const ChatPage = () => {
   const path = useLocation().pathname;
-
   const chatId = path.split("/").pop();
 
   const { isPending, error, data } = useQuery({
@@ -17,7 +16,7 @@ const ChatPage = () => {
         credentials: "include",
       }).then((res) => res.json()),
   });
-  
+
   return (
     <div className="relative chatPage h-[100%] flex flex-col items-center">
       <div className="wrapper flex-1 overflow-scroll no-scrollbar w-[100%] flex justify-center">
@@ -27,29 +26,29 @@ const ChatPage = () => {
             : error
             ? "Something went wrong!"
             : data?.history?.map((message, i) => (
-                <>
+                <React.Fragment key={i}>
                   {message.image && (
                     <IKImage
                       urlEndpoint={import.meta.env.VITE_URLENDPOINT}
                       path={message.image}
-                      height="300"
-                      width="400"
-                      transformation={[{ height: 300, width: 400 }]}
+                      height="200"
+                      width="300"
+                      transformation={[{ height: 200, width: 300 }]}
                       loading="lazy"
-                      lqip={{active: true, qualty: 20}}
+                      lqip={{ active: true, quality: 20 }}
+                      className="rounded-lg shadow-xl"
                     />
                   )}
                   <div
-                    key={i}
                     className={`${
                       message.role === "user" ? "userMessage" : "message"
                     }`}
                   >
                     <Markdown>{message.parts[0].text}</Markdown>
                   </div>
-                </>
+                </React.Fragment>
               ))}
-         {data && <NewPrompt data={data}/>}
+          {data && <NewPrompt data={data} />}
         </div>
       </div>
     </div>
@@ -57,4 +56,3 @@ const ChatPage = () => {
 };
 
 export default ChatPage;
- 

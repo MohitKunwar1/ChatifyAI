@@ -19,6 +19,7 @@ const authenticator = async () => {
     const { signature, expire, token } = data;
     return { signature, expire, token };
   } catch (error) {
+    console.error("Authentication request failed: ", error);
     throw new Error(`Authentication request failed: ${error.message}`);
   }
 };
@@ -27,7 +28,7 @@ const Upload = ({ setImage }) => {
   const ikUploadRef = useRef(null);
 
   const onError = (err) => {
-    console.log("Error", err);
+    console.error("Error", err);
   };
 
   const onSuccess = (res) => {
@@ -73,11 +74,14 @@ const Upload = ({ setImage }) => {
         style={{ display: "none" }}
         ref={ikUploadRef}
       />
-      {
-        <label onClick={() => ikUploadRef.current.click()}>
-          <img src="/addimage.png" alt="uploadimages" className="w-5 hn , cursor-pointer" />
-        </label>
-      }
+
+      <label onClick={() => ikUploadRef.current.click()}>
+        <img
+          src="/addimage.png"
+          alt="uploadimages"
+          className="w-5 hn , cursor-pointer"
+        />
+      </label>
     </IKContext>
   );
 };

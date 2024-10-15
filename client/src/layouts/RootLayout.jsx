@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { ClerkProvider, SignedIn, UserButton } from "@clerk/clerk-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { dark, neobrutalism, shadesOfPurple } from '@clerk/themes'
 
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -14,7 +15,9 @@ const queryClient = new QueryClient();
 
 const RootLayout = () => {
   return (
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/" appearance={{
+      baseTheme: [shadesOfPurple]
+    }}>
       <QueryClientProvider client={queryClient}>
       <div className="rootlayout py-[10px] px-[55px] h-[100vh] flex flex-col  ">
         <header className="flex items-center justify-between z-10 ">
